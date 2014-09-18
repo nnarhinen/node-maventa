@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+var argv = require('optimist').argv,
+    _ = require('underscore'),
+    Maventa = require('../'),
+    util = require('util');
+
+var apiKey = argv['api-key'],
+    companyUuid = argv['company-uuid'],
+    vendorApiKey = argv['vendor-api-key'],
+    testing = !!argv['testing'];
+
+var command = _.first(argv._);
+
+if (!apiKey || !companyUuid || !vendorApiKey) return console.error('--api-key, --vendor-api-key and --company-uuid must be provided');
+
+if (!command) return console.error('Usage: maventa --api-key=<key> --company-uuid=<uuid> <command> [<options..>]');
+
+var client = new Maventa(vendorApiKey, apiKey, companyUuid, testing);
+
+switch (command) {
+  case 'hello':
+   client.helloWorld().then(function(resp) {
+     console.log(util.inspect(resp));
+   }).done();
+   break;
+ case 'company':
+   client.companyShow().then(function(resp) {
+     console.log(util.inspect(resp));
+   }).done();
+   break;
+}
+
