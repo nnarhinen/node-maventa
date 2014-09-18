@@ -26,7 +26,6 @@ Maventa.prototype.helloWorld = function() {
 };
 
 Maventa.prototype.callAuthenticatedAction = function(action) {
-  console.log(this.apiUrl);
   var defer = Q.defer(),
       cl = this.getClient(),
       parms = [{
