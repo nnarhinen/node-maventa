@@ -9,11 +9,9 @@
   "author": "Niklas Närhinen <niklas@narhinen.net>",
   "license": "MIT",
   "dependencies": {
-    "soap": "~0.5.1",
     "optimist": "~0.6.1",
     "underscore": "~1.7.0",
     "q": "~1.0.1",
-    "easysoap": "~0.6.12",
     "xmlrpc": "~1.2.0"
   }
 }
