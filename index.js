@@ -1,5 +1,6 @@
 var xmlrpc = require('xmlrpc'),
-    Q = require('q');
+    Q = require('q'),
+    moment = require('moment');
 
 function Maventa(vendorApiKey, apiKey, companyUuid, testing) {
   this.vendorApiKey = vendorApiKey;
@@ -35,6 +36,9 @@ Maventa.prototype.callAuthenticatedAction = function(action) {
       }].concat(Array.prototype.slice.call(arguments, 1));
   cl.methodCall(action, parms, function(err, value) {
     if (err) return defer.reject(err);
+    if (value.length && value[0].status && value[0].status.indexOf('ERROR:') === 0) {
+      return defer.reject(new Error(value[0].status));
+    }
     defer.resolve(value);
   });
   return defer.promise;
@@ -44,4 +48,14 @@ Maventa.prototype.companyShow = function() {
   return this.callAuthenticatedAction('company_show');
 };
 
+Maventa.prototype.invoiceListInboundBetweenDates = function(start, end) {
+  return this.callAuthenticatedAction('invoice_list_inbound_between_dates', formatMaventaDateTime(start), formatMaventaDateTime(end));
+};
+
 module.exports = Maventa;
+
+//Utils
+function formatMaventaDateTime(d) {
+  return moment(d).format('YYYYMMDDHHmmss');
+};
+
