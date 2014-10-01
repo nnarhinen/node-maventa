@@ -52,6 +52,10 @@ Maventa.prototype.invoiceListInboundBetweenDates = function(start, end) {
   return this.callAuthenticatedAction('invoice_list_inbound_between_dates', formatMaventaDateTime(start), formatMaventaDateTime(end));
 };
 
+Maventa.prototype.inboundInvoiceShow = function(id, includeFiles, xmlFormat) {
+  return this.callAuthenticatedAction('inbound_invoice_show', id, includeFiles, xmlFormat);
+};
+
 module.exports = Maventa;
 
 //Utils

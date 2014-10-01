@@ -29,5 +29,10 @@ switch (command) {
      console.log(util.inspect(resp));
    }).done();
    break;
+ case 'inbound_invoice':
+   client.inboundInvoiceShow(argv._[1], true, 'finvoice').then(function(resp) {
+     console.log(util.inspect(resp));
+   }).done();
+   break;
 }
 
