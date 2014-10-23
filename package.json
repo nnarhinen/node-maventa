@@ -1,6 +1,6 @@
 {
   "name": "node-maventa",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Maventa service client",
   "main": "index.js",
   "scripts": {
