@@ -1,6 +1,8 @@
+'use strict';
 var xmlrpc = require('xmlrpc'),
     Q = require('q'),
-    moment = require('moment');
+    moment = require('moment'),
+    _ = require('underscore');
 
 function Maventa(vendorApiKey, apiKey, companyUuid, testing) {
   this.vendorApiKey = vendorApiKey;
@@ -9,7 +11,7 @@ function Maventa(vendorApiKey, apiKey, companyUuid, testing) {
   this.testing = !!testing;
   this.apiUrl = this.testing ? 'testing.maventa.com' : 'secure.maventa.com';
 
-};
+}
 
 Maventa.prototype.getClient = function() {
   return this.client || (this.client = xmlrpc.createSecureClient({ host: this.apiUrl, port: 443, path: '/apis/denver/api'}));
@@ -56,10 +58,23 @@ Maventa.prototype.inboundInvoiceShow = function(id, includeFiles, xmlFormat) {
   return this.callAuthenticatedAction('inbound_invoice_show', id, includeFiles, xmlFormat);
 };
 
+Maventa.prototype.invoiceCreate = function(invoiceData) {
+  return this.callAuthenticatedAction('invoice_create', _.extend({}, invoiceData, {
+    date: formatMaventaDate(invoiceData.date),
+    date_due: formatMaventaDate(invoiceData.date_due)
+  }));
+};
+
+Maventa.prototype.invoiceShow= function(id, includeFiles, xmlFormat) {
+  return this.callAuthenticatedAction('invoice_show', id, includeFiles, xmlFormat);
+};
+
 module.exports = Maventa;
 
 //Utils
 function formatMaventaDateTime(d) {
   return moment(d).format('YYYYMMDDHHmmss');
-};
-
+}
+function formatMaventaDate(d) {
+  return moment(d).format('YYYYMMDD');
+}

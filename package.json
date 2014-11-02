@@ -1,6 +1,6 @@
 {
   "name": "node-maventa",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Maventa service client",
   "main": "index.js",
   "scripts": {
@@ -9,10 +9,13 @@
   "author": "Niklas Närhinen <niklas@narhinen.net>",
   "license": "MIT",
   "dependencies": {
+    "moment": "~2.8.3",
     "optimist": "~0.6.1",
-    "underscore": "~1.7.0",
     "q": "~1.0.1",
-    "xmlrpc": "~1.2.0",
-    "moment": "~2.8.3"
+    "underscore": "^1.7.0",
+    "xmlrpc": "~1.2.0"
+  },
+  "jshintConfig": {
+    "node": true
   }
 }
