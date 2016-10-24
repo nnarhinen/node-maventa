@@ -31,6 +31,8 @@ Implemented methods call atm
  * [inbound_invoice_show](http://maventa.com/verkkolaskutus/maventa-api/api-versions/api-v1-1-documentation/#op.id0x1ee66570): `client.inboundInvoiceShow(id, downloadAttachments, xmlFormat)`
  * [invoice_create](http://maventa.com/verkkolaskutus/maventa-api/api-versions/api-v1-1-documentation/#op.id0x14f96a20): `client.invoiceCreate(invoiceData)`
  * [invoice_show](http://maventa.com/verkkolaskutus/maventa-api/api-versions/api-v1-1-documentation/#op.id0x1e484150): `client.invoiceShow(id, downloadAttachments, xmlFormat)`
+ * [collection_send]: `client.invoiceShow(id, downloadAttachments, xmlFormat)` Not in maventa API documentation
+
 
 Method calls will we implemented as I need them myself. Contributions as pull requests welcome.
 

@@ -69,6 +69,10 @@ Maventa.prototype.invoiceShow= function(id, includeFiles, xmlFormat) {
   return this.callAuthenticatedAction('invoice_show', id, includeFiles, xmlFormat);
 };
 
+Maventa.prototype.collectionSend = function(idList, command) {                //command is 'COLLECTION' or 'NOTICE'
+  return this.callAuthenticatedAction('collection_send', idList, command);
+}
+
 module.exports = Maventa;
 
 //Utils
